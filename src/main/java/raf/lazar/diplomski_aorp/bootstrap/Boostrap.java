@@ -212,6 +212,7 @@ public class Boostrap implements CommandLineRunner {
                 }
 
                 Predavac predavac = getBasicPredavacData(row, map);
+                //ako smo vec ucitali predavaca, .equals koristi name, lastname i email za proveru
                 if (predavacArrayList.contains(predavac)) {
                     Predavac p1 = predavacArrayList.get(predavacArrayList.indexOf(predavac));
                     //ako istom predavacu nije isti tip
