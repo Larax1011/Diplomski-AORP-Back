@@ -298,7 +298,6 @@ public class IzvestajTableContent {
 
             for (Predavanje predavanje : predmet.getPredavanja()) {
                 List<String> row = new ArrayList<>();
-                double ukupnoPredmet = 0.0;
                 //ime predmeta
                 row.add(firstRow ? predmet.getNaziv() : "");
                 firstRow = false;
@@ -314,27 +313,22 @@ public class IzvestajTableContent {
                 if (predavanje.getPredavac().getType().equalsIgnoreCase("profesor")) {
                     if (predavanje.getTip().equalsIgnoreCase("vezbe")) {
                         row.add(predavanje.getPredmet().getFond_vezbe() + "/2");
-                        ukupnoPredmet += predavanje.getPredmet().getFond_vezbe() / 2.0 * predavanje.getBr_termina();
                     }
                     if (predavanje.getTip().equalsIgnoreCase("praktikum")) {
                         row.add(predavanje.getPredmet().getFond_praktikum() + "/2");
-                        ukupnoPredmet += predavanje.getPredmet().getFond_praktikum() / 2.0 * predavanje.getBr_termina();
                     }
                 } else {
                     if (predavanje.getTip().equalsIgnoreCase("vezbe")) {
                         row.add(predavanje.getPredmet().getFond_vezbe().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_vezbe() * predavanje.getBr_termina();
 
                     }
                     if (predavanje.getTip().equalsIgnoreCase("praktikum")) {
                         row.add(predavanje.getPredmet().getFond_praktikum().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_praktikum() * predavanje.getBr_termina();
 
                     }
                 }
                 if (predavanje.getTip().equalsIgnoreCase("predavanje")) {
                     row.add(predavanje.getPredmet().getFond_predavanja().toString());
-                    ukupnoPredmet += predavanje.getPredmet().getFond_predavanja() * predavanje.getBr_termina();
                 }
 
                 this.rows.add(row);
