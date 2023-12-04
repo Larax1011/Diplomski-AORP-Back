@@ -3,10 +3,7 @@ package raf.lazar.diplomski_aorp.model;
 
 import javax.persistence.*;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import raf.lazar.diplomski_aorp.requests.PredavanjeCreateRequest;
 
 @Entity

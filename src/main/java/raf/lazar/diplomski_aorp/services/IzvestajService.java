@@ -1,10 +1,8 @@
 package raf.lazar.diplomski_aorp.services;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.stereotype.Service;
 import raf.lazar.diplomski_aorp.model.Predavac;
-import raf.lazar.diplomski_aorp.model.Predavanje;
 import raf.lazar.diplomski_aorp.model.Predmet;
 import raf.lazar.diplomski_aorp.model.SkolskaGodina;
 import raf.lazar.diplomski_aorp.model.izvestaj.IzvestajTableContent;
@@ -12,8 +10,6 @@ import raf.lazar.diplomski_aorp.model.izvestaj.Reports;
 import raf.lazar.diplomski_aorp.model.izvestaj.TableReport;
 import raf.lazar.diplomski_aorp.repositories.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -32,11 +28,6 @@ public class IzvestajService{
                 : this.predavacRepository.findAllByPredavanjaIsNotEmpty();
 
         SkolskaGodina skolskaGodina = this.skolskaGodinaRepository.findSkolskaGodinaByPocetnaGodinaAndKrajnjaGodina(pocetnaGodina, krajnjaGodina);
-
-        for (Predavac predavac : predavacList) {
-
-        }
-
 
         return vanredni ? makeFullIzvestaj(predavacList, skolskaGodina) : makeOfficialIzvestaj(predavacList, skolskaGodina);
     }

@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import raf.lazar.diplomski_aorp.model.*;
 import raf.lazar.diplomski_aorp.model.dto.NerasporedjenPredmetDTO;
 import raf.lazar.diplomski_aorp.requests.PredmetCreateRequest;
-import raf.lazar.diplomski_aorp.services.PredavacService;
 import raf.lazar.diplomski_aorp.services.PredmetService;
-import raf.lazar.diplomski_aorp.services.SkolskaGodinaService;
 
 import java.util.List;
 import java.util.Optional;

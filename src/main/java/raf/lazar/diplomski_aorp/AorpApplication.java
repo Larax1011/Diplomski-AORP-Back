@@ -1,6 +1,5 @@
 package raf.lazar.diplomski_aorp;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,7 +13,7 @@ public class AorpApplication {
 
         builder.headless(false);
 
-        ConfigurableApplicationContext context = builder.run(args);
+        builder.run(args);
     }
 
 }

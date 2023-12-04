@@ -2,13 +2,10 @@ package raf.lazar.diplomski_aorp.controllers;
 
 import com.itextpdf.text.DocumentException;
 import lombok.AllArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import raf.lazar.diplomski_aorp.services.*;
-
-import java.util.Date;
 
 @RestController
 @CrossOrigin
@@ -24,7 +21,7 @@ public class IzvestajController {
             @RequestParam Integer pocetnaGodina,
             @RequestParam Integer krajnjaGodina) throws DocumentException {
 
-        byte[] pdf = {};
+        byte[] pdf;
         pdf = this.izvestajService.makeIzvestaj(pocetnaGodina, krajnjaGodina, vanredniCasovi).getReport();
 
         if (pdf.length > 0) {
@@ -37,8 +34,8 @@ public class IzvestajController {
     public ResponseEntity<?> getIzvestajPredmeti(
             @RequestParam Integer pocetnaGodina,
             @RequestParam Integer krajnjaGodina) throws DocumentException {
-        byte[] pdf = {};
-        pdf = izvestajService.makePredmetIzvestaj(pocetnaGodina.intValue(), krajnjaGodina.intValue()).getReport();
+        byte[] pdf;
+        pdf = izvestajService.makePredmetIzvestaj(pocetnaGodina, krajnjaGodina).getReport();
         if (pdf.length > 0) {
             return ResponseEntity.ok(pdf);
         }

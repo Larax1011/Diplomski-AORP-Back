@@ -1,6 +1,5 @@
 package raf.lazar.diplomski_aorp.services;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import raf.lazar.diplomski_aorp.model.*;
@@ -76,19 +75,19 @@ public class PredmetService implements IService<Predmet, Long> {
                     }
                 }
 
-                if (brPredavanja != termini.getBr_termina_predavanja().intValue()) {
+                if (brPredavanja != termini.getBr_termina_predavanja()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
                     System.out.println("DO THIS1");
                     continue;
                 }
-                if (brVezbe != termini.getBr_termina_vezbe().intValue()) {
+                if (brVezbe != termini.getBr_termina_vezbe()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
                     System.out.println("DO THIS2");
                     continue;
                 }
-                if (brPraktikum != termini.getBr_termina_praktikum().intValue()) {
+                if (brPraktikum != termini.getBr_termina_praktikum()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
                     System.out.println("DO THIS3");

@@ -4,7 +4,6 @@ import lombok.Data;
 import raf.lazar.diplomski_aorp.model.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Data
@@ -26,7 +25,7 @@ public class IzvestajTableContent {
             double ukupnoProf = 0.0;
             double ukupnoParni = 0.0;
             double ukupnoNeparni = 0.0;
-            double ukupnoGodina = 0.0;
+            double ukupnoGodina;
             firstRow = true;
 
             //ako nisu iste skolske godine
@@ -55,26 +54,13 @@ public class IzvestajTableContent {
                 //br termina
                 row.add(predavanje.getBr_termina().toString());
                 //racunati casovi
-                if (predavac.getType().equalsIgnoreCase("profesor")) {
-                    if (predavanje.getTip().equalsIgnoreCase("vezbe")) {
-                        row.add(predavanje.getPredmet().getFond_vezbe().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_vezbe() * predavanje.getBr_termina();
-                    }
-                    if (predavanje.getTip().equalsIgnoreCase("praktikum")) {
-                        row.add(predavanje.getPredmet().getFond_praktikum().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_praktikum() * predavanje.getBr_termina();
-                    }
-                } else {
-                    if (predavanje.getTip().equalsIgnoreCase("vezbe")) {
-                        row.add(predavanje.getPredmet().getFond_vezbe().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_vezbe() * predavanje.getBr_termina();
-
-                    }
-                    if (predavanje.getTip().equalsIgnoreCase("praktikum")) {
-                        row.add(predavanje.getPredmet().getFond_praktikum().toString());
-                        ukupnoPredmet += predavanje.getPredmet().getFond_praktikum() * predavanje.getBr_termina();
-
-                    }
+                if (predavanje.getTip().equalsIgnoreCase("vezbe")) {
+                    row.add(predavanje.getPredmet().getFond_vezbe().toString());
+                    ukupnoPredmet += predavanje.getPredmet().getFond_vezbe() * predavanje.getBr_termina();
+                }
+                if (predavanje.getTip().equalsIgnoreCase("praktikum")) {
+                    row.add(predavanje.getPredmet().getFond_praktikum().toString());
+                    ukupnoPredmet += predavanje.getPredmet().getFond_praktikum() * predavanje.getBr_termina();
                 }
                 if (predavanje.getTip().equalsIgnoreCase("predavanje")) {
                     row.add(predavanje.getPredmet().getFond_predavanja().toString());
@@ -139,7 +125,7 @@ public class IzvestajTableContent {
             double ukupnoParni = 0.0;
             double ukupnoNeparni = 0.0;
             double ukupnoVanredni = 0.0;
-            double ukupnoGodina = 0.0;
+            double ukupnoGodina;
             firstRow = true;
 
             //ako nisu iste skolske godine
@@ -350,6 +336,6 @@ public class IzvestajTableContent {
     }
 
     private boolean isParanSemestar(Predavanje predavanje) {
-        return predavanje.getPredmet().getSemestar().intValue() % 2 == 0;
+        return predavanje.getPredmet().getSemestar() % 2 == 0;
     }
 }

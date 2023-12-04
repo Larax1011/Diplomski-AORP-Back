@@ -1,26 +1,16 @@
 package raf.lazar.diplomski_aorp.bootstrap;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import raf.lazar.diplomski_aorp.model.Predavac;
-import raf.lazar.diplomski_aorp.model.Predavanje;
 import raf.lazar.diplomski_aorp.model.Predmet;
-import raf.lazar.diplomski_aorp.model.SkolskaGodina;
 import raf.lazar.diplomski_aorp.repositories.*;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 @Component
 @AllArgsConstructor
@@ -187,7 +177,7 @@ public class Boostrap implements CommandLineRunner {
     private void loadPredavaci(Workbook workbookPredavaci) {
         Sheet sheet = workbookPredavaci.getSheetAt(0);
         HashMap<String, Integer> map = new HashMap<>();
-        int totalCnt = 0;
+//        int totalCnt = 0;
         ArrayList<Predavac> predavacArrayList = new ArrayList<>();
         for (Row row : sheet) {
             System.out.println("CURRENTLY ON ROW " + row.getRowNum());
@@ -228,7 +218,7 @@ public class Boostrap implements CommandLineRunner {
                 } else {
                     predavacArrayList.add(predavac);
                 }
-                totalCnt++;
+//                totalCnt++;
 //            System.out.println(totalCnt);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, msg + " " + e.getMessage(), "Dialog", JOptionPane.ERROR_MESSAGE);
@@ -246,19 +236,19 @@ public class Boostrap implements CommandLineRunner {
         Predavac result = new Predavac();
         DataFormatter dataFormatter = new DataFormatter();
         for (Cell cell : row) {
-            if (cell.getColumnIndex() == map.get("ime").intValue()) {
+            if (cell.getColumnIndex() == map.get("ime")) {
                 result.setName(dataFormatter.formatCellValue(cell));
                 continue;
             }
-            if (cell.getColumnIndex() == map.get("prezime").intValue()) {
+            if (cell.getColumnIndex() == map.get("prezime")) {
                 result.setLastname(dataFormatter.formatCellValue(cell));
                 continue;
             }
-            if (cell.getColumnIndex() == map.get("tip").intValue()) {
+            if (cell.getColumnIndex() == map.get("tip")) {
                 result.setType(dataFormatter.formatCellValue(cell));
                 continue;
             }
-            if (cell.getColumnIndex() == map.get("email").intValue()) {
+            if (cell.getColumnIndex() == map.get("email")) {
                 result.setEmail(dataFormatter.formatCellValue(cell));
             }
         }

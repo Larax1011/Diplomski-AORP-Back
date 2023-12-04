@@ -5,12 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import raf.lazar.diplomski_aorp.model.Predavac;
-import raf.lazar.diplomski_aorp.model.SkolskaGodina;
 import raf.lazar.diplomski_aorp.model.VanredniCas;
 import raf.lazar.diplomski_aorp.requests.VanredniCasCreateRequest;
-import raf.lazar.diplomski_aorp.services.PredavacService;
-import raf.lazar.diplomski_aorp.services.SkolskaGodinaService;
 import raf.lazar.diplomski_aorp.services.VanredniCasService;
 
 import java.util.List;
