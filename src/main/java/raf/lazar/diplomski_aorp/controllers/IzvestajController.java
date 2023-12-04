@@ -23,13 +23,10 @@ public class IzvestajController {
             @RequestParam Boolean vanredniCasovi,
             @RequestParam Integer pocetnaGodina,
             @RequestParam Integer krajnjaGodina) throws DocumentException {
+
         byte[] pdf = {};
-        if (vanredniCasovi) {
-            pdf = izvestajService.makeFullIzvestaj(pocetnaGodina.intValue(), krajnjaGodina.intValue()).getReport();
-        }
-        else {
-            pdf = izvestajService.makeOfficialIzvestaj(pocetnaGodina.intValue(), krajnjaGodina.intValue()).getReport();
-        }
+        pdf = this.izvestajService.makeIzvestaj(pocetnaGodina, krajnjaGodina, vanredniCasovi).getReport();
+
         if (pdf.length > 0) {
             return ResponseEntity.ok(pdf);
         }
