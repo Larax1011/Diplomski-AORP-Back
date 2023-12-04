@@ -1,5 +1,6 @@
 package raf.lazar.diplomski_aorp.services;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import raf.lazar.diplomski_aorp.model.*;
@@ -43,18 +44,22 @@ public class PredmetService implements IService<Predmet, Long> {
     public List<NerasporedjenPredmetDTO> findAllNerasporedjeniPredmeti(Integer pocetnaGodina, Integer krajnjaGodina) {
         List<Predmet> predmeti = this.predmetRepository.findAll();
         List<NerasporedjenPredmetDTO> nerasporedjeni = new ArrayList<>();
+        System.out.println(pocetnaGodina);
+        System.out.println(krajnjaGodina);
         SkolskaGodina skolskaGodina = this.skolskaGodinaRepository.findSkolskaGodinaByPocetnaGodinaAndKrajnjaGodina(pocetnaGodina, krajnjaGodina);
 
         for (Predmet predmet : predmeti) {
             Termini termini = null;
             //trazimo termine za trazenu godinu
             for (Termini t : predmet.getTermini()) {
+                System.out.println("GODINA IS " + t.getSkolskaGodina().getPocetnaGodina());
                 if (t.getSkolskaGodina().equals(skolskaGodina)) {
                     termini = t;
                     break;
                 }
             }
             if (termini != null) {
+                System.out.println("TERMINI NOT NULL");
                 int brPredavanja = 0;
                 int brVezbe = 0;
                 int brPraktikum = 0;
@@ -74,16 +79,19 @@ public class PredmetService implements IService<Predmet, Long> {
                 if (brPredavanja != termini.getBr_termina_predavanja().intValue()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
+                    System.out.println("DO THIS1");
                     continue;
                 }
                 if (brVezbe != termini.getBr_termina_vezbe().intValue()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
+                    System.out.println("DO THIS2");
                     continue;
                 }
                 if (brPraktikum != termini.getBr_termina_praktikum().intValue()) {
                     NerasporedjenPredmetDTO np = new NerasporedjenPredmetDTO(predmet, termini, brPredavanja, brVezbe, brPraktikum);
                     nerasporedjeni.add(np);
+                    System.out.println("DO THIS3");
                     continue;
                 }
 
