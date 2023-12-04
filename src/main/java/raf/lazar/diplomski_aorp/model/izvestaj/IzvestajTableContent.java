@@ -28,16 +28,13 @@ public class IzvestajTableContent {
             double ukupnoNeparni = 0.0;
             double ukupnoGodina = 0.0;
             firstRow = true;
-            for (Iterator<Predavanje> it = predavac.getPredavanja().iterator(); it.hasNext(); ) {
-                Predavanje predavanje = it.next();
-                //ako nisu iste skolske godine
-                if (predavanje.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue()) {
-                    it.remove();
-                }
-            }
+
+            //ako nisu iste skolske godine
+            predavac.getPredavanja().removeIf(predavanje -> predavanje.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue());
             if (predavac.getPredavanja().isEmpty()) {
                 continue;
             }
+
 
             List<String> nedeljaRow = new ArrayList<>();
             List<String> semestarRow = new ArrayList<>();
@@ -144,12 +141,11 @@ public class IzvestajTableContent {
             double ukupnoVanredni = 0.0;
             double ukupnoGodina = 0.0;
             firstRow = true;
+
             //ako nisu iste skolske godine
             predavac.getPredavanja().removeIf(predavanje -> predavanje.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue());
             //ako nisu iste skolske godine
             predavac.getVanredniCasovi().removeIf(vanredniCas -> vanredniCas.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue());
-
-
             if (predavac.getPredavanja().isEmpty() && predavac.getVanredniCasovi().isEmpty()) {
                 continue;
             }
@@ -285,13 +281,8 @@ public class IzvestajTableContent {
         boolean firstRow;
         for (Predmet predmet : predmetList) {
             firstRow = true;
-            for (Iterator<Predavanje> it = predmet.getPredavanja().iterator(); it.hasNext(); ) {
-                Predavanje predavanje = it.next();
-                //ako nisu iste skolske godine
-                if (predavanje.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue()) {
-                    it.remove();
-                }
-            }
+            predmet.getPredavanja().removeIf(predavanje -> predavanje.getSkolskaGodina().getPocetnaGodina().intValue() != skolskaGodina.getPocetnaGodina().intValue());
+
             if (predmet.getPredavanja().isEmpty()) {
                 continue;
             }
